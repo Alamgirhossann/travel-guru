@@ -1,0 +1,18 @@
+.img-size{
+    width: 270px;
+    height: 416px;
+}
+.div-devide{
+    display: flex;
+    background-color: rgba(17, 13, 13, 0.5);
+    height: 100vh;
+}
+.loc-detail{
+    width: 55%;
+    color: white;
+    margin: 25px;
+    padding: 25px;
+}
+.carousel{
+    width: 35%;
+}
