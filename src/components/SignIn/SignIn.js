@@ -1,98 +1,173 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './SignIn.css';
 
-const SignIn = () => {
-
-  const signUp = document.getElementById('sign-up'),
-  signIn = document.getElementById('sign-in'),
-  loginIn = document.getElementById('login-in'),
-  loginUp = document.getElementById('login-up')
+import firebase from "firebase/app";
+import { useHistory, useLocation } from 'react-router-dom';
+import { LocationContext } from '../../App';
 
 
-signUp.addEventListener('click', ()=>{
-  // Remove classes first if they exist
-  loginIn.classList.remove('block')
-  loginUp.classList.remove('none')
 
-  // Add classes
-  loginIn.classList.toggle('none')
-  loginUp.classList.toggle('block')
-})
 
-signIn.addEventListener('click', ()=>{
-  // Remove classes first if they exist
-  loginIn.classList.remove('none')
-  loginUp.classList.remove('block')
+const SignIn = (props) => {
+    console.log(props);
+    const [newUser, setNewUser] = useState(false)
+    const [user, setUser] = useState({
+        isSignedIn: false,
+        name: '',
+        email: '',
+        password: '',
+        photo: '',
+        error: '',
+        success: false,
 
-  // Add classes
-  loginIn.classList.toggle('block')
-  loginUp.classList.toggle('none')
-})
-  return (
-    <div class="login">
-            <div class="login__content">
-                <div class="login__img">
-                    <img src="assets/img/img-login.svg" alt=""/>
-                </div>
+    })
 
-                <div class="login__forms">
-                    <form action="" class="login__registre" id="login-in">
-                        <h1 class="login__title">Sign In</h1>
-    
-                        <div class="login__box">
-                            <i class='bx bx-user login__icon'></i>
-                            <input type="text" placeholder="Username" class="login__input"/>
-                        </div>
-    
-                        <div class="login__box">
-                            <i class='bx bx-lock-alt login__icon'></i>
-                            <input type="password" placeholder="Password" class="login__input"/>
-                        </div>
+    const [loggedInUser, setLoggedInUser] = useContext(LocationContext);
+    let history = useHistory();
+    let location = useLocation();
+    let { from } = location.state || { from: { pathname: "/" } };
 
-                        <a href="/" class="login__forgot">Forgot password?</a>
 
-                        <a href="/" class="login__button">Sign In</a>
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const handleSignIn = () => {
 
-                        <div>
-                            <span class="login__account">Don't have an Account ?</span>
-                            <span class="login__signin" id="sign-up">Sign Up</span>
-                        </div>
-                    </form>
+        firebase.auth().signInWithPopup(provider)
+            .then(res => {
+                console.log(res);
+                const { displayName, photoURL, email } = res.user;
+                const SignedInUser = {
+                    isSignedIn: true,
+                    name: displayName,
+                    email: email,
+                    photo: photoURL
 
-                    <form action="" class="login__create none" id="login-up">
-                        <h1 class="login__title">Create Account</h1>
-    
-                        <div class="login__box">
-                            <i class='bx bx-user login__icon'></i>
-                            <input type="text" placeholder="Username" class="login__input"/>
-                        </div>
-    
-                        <div class="login__box">
-                            <i class='bx bx-at login__icon'></i>
-                            <input type="text" placeholder="Email" class="login__input"/>
-                        </div>
+                }
+                setUser(SignedInUser)
+                setLoggedInUser(SignedInUser)
+                history.replace(from);
+            })
+            .catch(err => {
+                console.log(err);
 
-                        <div class="login__box">
-                            <i class='bx bx-lock-alt login__icon'></i>
-                            <input type="password" placeholder="Password" class="login__input"/>
-                        </div>
+            })
+    }
 
-                        <a href="/" class="login__button">Sign Up</a>
+    const handleSignOUt = () => {
+        firebase.auth().signOut()
+            .then(res => {
+                const SignedOutUser = {
+                    isSignedIn: false,
+                    name: '',
+                    email: '',
+                    photo: ''
+                }
+                setUser(SignedOutUser)
+            })
+            .catch(err => console.log(err))
+    }
 
-                        <div>
-                            <span class="login__account">Already have an Account ?</span>
-                            <span class="login__signup" id="sign-in">Sign In</span>
-                        </div>
+    const handleSubmit = (e) => {
+        if (newUser && user.email && user.password) {
+            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+                .then(res => {
+                    const newUser = { ...user }
+                    newUser.error = '';
+                    newUser.success = true;
+                    setUser(newUser)
+                    upDateUserName(user.name)
+                })
+                .catch((error) => {
+                    const newUser = { ...user }
+                    newUser.error = error.message;
+                    newUser.success = false;
+                    setUser(newUser)
+                });
+        }
+        e.preventDefault()
 
-                        <div class="login__social">
-                            <a href="/" class="login__social-icon"><i class='bx bxl-facebook' ></i></a>
-                            <a href="/" class="login__social-icon"><i class='bx bxl-twitter' ></i></a>
-                            <a href="/" class="login__social-icon"><i class='bx bxl-google' ></i></a>
-                        </div>
-                    </form>
-                </div>
+        if (!newUser && user.email && user.password) {
+            firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+                .then(res => {
+                    const newUser = { ...user }
+                    newUser.error = '';
+                    newUser.success = true;
+                    setUser(newUser)
+                    setLoggedInUser(newUser)
+                    history.replace(from);
+                    console.log('signed in info', res.user);
+                })
+                .catch((error) => {
+                    const newUser = { ...user }
+                    newUser.error = error.message;
+                    newUser.success = false;
+                    setUser(newUser)
+                });
+        }
+    }
+
+
+
+    const upDateUserName = name => {
+        const user = firebase.auth().currentUser;
+
+        user.updateProfile({
+            displayName: name,
+
+        }).then(function () {
+            console.log('user name updated ');
+        }).catch(function (error) {
+            // An error happened.
+        });
+    }
+
+    const handleBlur = (e) => {
+        let isFormValid = true;
+        if (e.target.name === 'email') {
+            isFormValid = /\S+@\S+\.\S+/.test(e.target.value)
+
+        }
+        if (e.target.name === 'password') {
+            const isPssawordValid = e.target.value.length >= 6
+            const passwordHasNumber = /\d{1}/.test(e.target.value)
+            isFormValid = (passwordHasNumber && isPssawordValid);
+        }
+        if (isFormValid) {
+            const newUserInfo = { ...user }
+            newUserInfo[e.target.name] = e.target.value;
+            setUser(newUserInfo)
+        }
+    }
+    return (
+        <div className='App'>
+        { user.isSignedIn ?
+            <button onClick={handleSignOUt}>Sign Out</button> :
+            <button onClick={handleSignIn}>Sign In</button>
+        }
+        {
+            user.isSignedIn && <div>
+                <p>Welcome {user.name}</p>
+                <p>Email: {user.email} </p>
+                <img src={user.photo} alt="" />
             </div>
-        </div>
+        }
+        <h1>Our own authentication</h1>
+        <input type="checkbox" onChange={() => setNewUser(!newUser)} name="newUser" id="" />
+        <label htmlFor='newUser'>New User Sign Up</label>
+        <form onSubmit={handleSubmit}>
+
+            {newUser && <input onBlur={handleBlur} type="text" name='name' placeholder='name' />}
+            <br />
+            <input onBlur={handleBlur} name='email' type="text" placeholder='Your Email' required />
+            <br />
+            <input onBlur={handleBlur} name='password' type="password" placeholder="Your password" required />
+            <br />
+            <input type="submit" />
+        </form>
+        <p style={{ color: 'red' }}>{user.error}</p>
+        {
+            user.success && <p style={{ color: 'green' }}>Successfully {newUser ? 'create' : 'logged in'} acount </p>
+        }
+    </div>
   );
 }
 

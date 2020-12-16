@@ -1,3 +1,4 @@
+
 import React, { useContext } from 'react';
 import './Home.css';
 import Carousel from 'react-bootstrap/Carousel';
@@ -6,15 +7,16 @@ import img2 from '../../Image/sundorbon.png';
 import img3 from '../../Image/Sreemongol.png';
 import { Button } from 'react-bootstrap';
 import { LocationContext } from '../../App';
-import Carousel1 from '../Carousel/Carousel'
+import Location from '../Location/Location';
 
 const Home = () => {
     const [location, setLocation] = useContext(LocationContext);
-    console.log(location);
+    
     return (
        <div className='div-devide'>
            <div className='loc-detail'>
-                <Carousel1></Carousel1>
+               <h3>Your Location: <span style={{color:'tomato'}}>{location}</span> </h3>
+                <Location></Location>
            </div>
            <Carousel className='carousel'>
             <Carousel.Item>
@@ -24,7 +26,7 @@ const Home = () => {
                     alt="First slide"
                 />
                 <Carousel.Caption>
-                <Button variant="secondary" onClick={()=>setLocation("coxbazar")}>COX'S BAZAR</Button>
+                <Button variant="secondary" onClick={()=>setLocation("Cox'sBazar")}>COX'S BAZAR</Button>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -35,7 +37,7 @@ const Home = () => {
                 />
 
                 <Carousel.Caption>
-                <Button variant="secondary" onClick={()=>setLocation('sreemongol')}>SREEMONGOL</Button>
+                <Button variant="secondary" onClick={()=>setLocation('Sundorbon')}>SUNDORBON</Button>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -46,7 +48,7 @@ const Home = () => {
                 />
 
                 <Carousel.Caption>
-                <Button variant="secondary" onClick={()=>setLocation('sundorbon')}>SUNDORBON</Button>
+                <Button variant="secondary" onClick={()=>setLocation('Sreemongol')}>SREEMONGOL</Button>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>

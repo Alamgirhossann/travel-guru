@@ -1,31 +1,34 @@
 export const FakeData = [
-  {
-    category: "coxbazar",
-    detail:'Lorem ipsum dolor sit amet . Asperiores eaque quos modi velit nam reiciendis quibusdam placeat vero sint fugit.',
+  { id: 1,
+    category: "cox'sbazar",
+    detail:'Coxsbazar is a sit amet . Asperiores eaque quos modi velit nam reiciendis quibusdam placeat vero sint fugit. Coxsbazar is a sit amet . Asperiores eaque quos modi velit nam reiciendis quibusdam placeat vero sint fugit.',
     hotel:
       [
         {
           id: 1,
           name: 'Blue moon',
           description: "This is a beautiful place to visit",
+          photo:'https://ibb.co/2MGk7Q6'
         },
       
         {
           id: 2,
           name: 'Royal blue',
           description: "This is a beautiful place to visit",
+          photo:'https://ibb.co/j5gR4bv'
         },
         {
           id: 3,
           name: 'Concord hotel',
           description: "This is a beautiful place to visit",
+          photo:'https://ibb.co/qRzNrsX'
         }
       ]
   },
 
-  {
-    category: "srimangal",
-    detail:'Sit amet consectetur adipisicing elit. Asperiores consectetur adipisicing elit eaque quos modi velit nam reiciendis quibusdam placeat vero sint fugit.',
+  { id: 2,
+    category: "sreemongol",
+    detail:'Sit amet Sreemongol consectetur adipisicing elit. Asperiores consectetur adipisicing elit eaque quos modi velit nam reiciendis quibusdam placeat vero sint fugit. Sit amet Sreemongol consectetur adipisicing elit. Asperiores consectetur adipisicing elit eaque quos modi velit nam reiciendis quibusdam placeat vero sint fugit.',
     hotel:
       [
         {
@@ -47,9 +50,9 @@ export const FakeData = [
       ]
   },
 
-  {
-    category: "shajek",
-    detail: ' Asperiores eaque quos modi velit nam reiciendis quibusdam placeat vero sint fugit. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+  { id: 3,
+    category: "sundorbon",
+    detail: ' Asperiores eaque Sundorbon quos modi velit nam reiciendis quibusdam placeat vero sint fugit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores eaque Sundorbon quos modi velit nam reiciendis quibusdam placeat vero sint fugit. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     hotel:
       [
         {

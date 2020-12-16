@@ -19,6 +19,7 @@ h1{
     height: 100vh;
     margin-left: 1.5rem;
     margin-right: 1.5rem;
+    background-color: rgba(17, 13, 13, 0.5);
   }
   
   .login__content{
