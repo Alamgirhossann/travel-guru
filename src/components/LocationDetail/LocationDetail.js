@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LocationContext } from '../../App';
@@ -7,7 +7,7 @@ import { LocationContext } from '../../App';
 const LocationDetail = (props) => {
     const {detail} = props.locInfo;
     const [singleLocation, setSingleLocation] = useContext(LocationContext)
-    console.log(props);
+    
     return (
         <div>
             <p><strong style={{color:'tomato', textDecoration:'underline'}}>Description: </strong><br/> {detail}</p>

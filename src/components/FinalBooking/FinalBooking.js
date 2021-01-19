@@ -1,16 +1,41 @@
 import React, { useContext } from 'react';
+import { Card, Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { LocationContext } from '../../App';
+import map from '../../Image/map2.jpg'
 
 
 const FinalBooking = () => {
     const [singleLocation, setSingleLocation] = useContext(LocationContext);
-    const {hotel} = singleLocation.locInfo;
+    const { hotel } = singleLocation.locInfo;
     console.log(singleLocation);
     return (
-        <div>
-            <h1>This is Final booking component:{hotel[0].name} </h1>
-            <h1>This is Final booking component:{hotel[0].description} </h1>
-            <img src={hotel[0].photo} alt=""/>
+        <div style={{backgroundColor:'white'}}>
+            <h3>Stay in  {singleLocation.locInfo.category}</h3>
+            <Row>
+                <Col>
+                    {hotel.map(room =>
+                        <Card style={{ width: '35rem', margin: '10px', }}>
+                            <Row>
+                            <Col>
+                                <Card.Img variant="top" src={room.photo} />
+                                </Col>
+                                <Col>
+                                <Card.Body style={{ color: 'gray', textAlign: 'left' }}>
+                                    <Card.Title>{room.name}</Card.Title>
+                                    <Card.Text>{room.bed}</Card.Text>
+                                    <Card.Text>{room.condition}</Card.Text>
+                                    <Card.Text>{room.description}</Card.Text>
+                                </Card.Body>
+                                </Col>
+                                </Row>
+                        </Card>)}
+                </Col>
+                <Col md={6}>
+                <Card.Img variant="top" src={map} />
+                </Col>
+            </Row>
+
         </div>
     );
 };

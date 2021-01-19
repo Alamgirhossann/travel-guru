@@ -7,21 +7,27 @@ export const FakeData = [
         {
           id: 1,
           name: 'Blue moon',
-          description: "This is a beautiful place to visit",
-          photo:'https://ibb.co/2MGk7Q6'
+          condition: 'Wif Air Conditon kitchen',
+          bed: '4 guests 2 bedrooms 2 beds 2 baths',
+          description: "Cancellation fexibility available",
+          photo:'https://www.dl.dropboxusercontent.com/s/hl6xbqcykfsdns8/Rectangle%2026.png?dl=0'
         },
       
         {
           id: 2,
           name: 'Royal blue',
-          description: "This is a beautiful place to visit",
-          photo:'https://ibb.co/j5gR4bv'
+          condition: 'Wif Air Conditon kitchen',
+          bed: '4 guests 2 bedrooms 2 beds 2 baths',
+          description: "Cancellation fexibility available",
+          photo:'https://www.dl.dropboxusercontent.com/s/640btd8f2wlagr9/Rectangle%2027.png?dl=0'
         },
         {
           id: 3,
           name: 'Concord hotel',
-          description: "This is a beautiful place to visit",
-          photo:'https://ibb.co/qRzNrsX'
+          condition: 'Wif Air Conditon kitchen',
+          bed: '4 guests 2 bedrooms 2 beds 2 baths',
+          description: "Cancellation fexibility available",
+          photo:'https://www.dl.dropboxusercontent.com/s/d3cwlsp8fzld0b8/Rectangle%2028.png?dl=0'
         }
       ]
   },
@@ -34,42 +40,65 @@ export const FakeData = [
         {
           id: 1,
           name: 'Radison',
-          description: "This is a beautiful place to visit",
+          condition: 'Wif Air Conditon kitchen',
+          bed: '4 guests 2 bedrooms 2 beds 2 baths',
+          description: "Cancellation fexibility available",
+          photo:'https://www.dl.dropboxusercontent.com/s/640btd8f2wlagr9/Rectangle%2027.png?dl=0'
+         
         },
       
         {
           id: 2,
           name: 'Shonargon',
-          description: "This is a beautiful place to visit",
+          condition: 'Wif Air Conditon kitchen',
+          bed: '4 guests 2 bedrooms 2 beds 2 baths',
+          description: "Cancellation fexibility available",
+          photo:'https://www.dl.dropboxusercontent.com/s/d3cwlsp8fzld0b8/Rectangle%2028.png?dl=0'
         },
         {
           id: 3,
           name: 'Hotel Taj',
-          description: "This is a beautiful place to visit",
+          condition: 'Wif Air Conditon kitchen',
+          bed: '4 guests 2 bedrooms 2 beds 2 baths',
+          description: "Cancellation fexibility available",
+          photo:'https://www.dl.dropboxusercontent.com/s/hl6xbqcykfsdns8/Rectangle%2026.png?dl=0'
+          
         }
       ]
   },
 
   { id: 3,
     category: "sundorbon",
+    condition: 'Wif Air Conditon kitchen',
+    bed: '4 guests 2 bedrooms 2 beds 2 baths',
     detail: ' Asperiores eaque Sundorbon quos modi velit nam reiciendis quibusdam placeat vero sint fugit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores eaque Sundorbon quos modi velit nam reiciendis quibusdam placeat vero sint fugit. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     hotel:
       [
         {
           id: 1,
           name: 'Hotel east west',
-          description: "This is a beautiful place to visit",
+          condition: 'Wif Air Conditon kitchen',
+          bed: '4 guests 2 bedrooms 2 beds 2 baths',
+          description: "Cancellation fexibility available",
+          photo:'https://www.dl.dropboxusercontent.com/s/d3cwlsp8fzld0b8/Rectangle%2028.png?dl=0'
+          
         },
       
         {
           id: 2,
           name: 'Royal palace',
-          description: "This is a beautiful place to visit",
+          condition: 'Wif Air Conditon kitchen',
+          bed: '4 guests 2 bedrooms 2 beds 2 baths',
+          description: "Cancellation fexibility available",
+          photo:'https://www.dl.dropboxusercontent.com/s/640btd8f2wlagr9/Rectangle%2027.png?dl=0'
         },
         {
           id: 3,
           name: 'Kings hotel',
-          description: "This is a beautiful place to visit",
+          condition: 'Wif Air Conditon kitchen',
+          bed: '4 guests 2 bedrooms 2 beds 2 baths',
+          description: "Cancellation fexibility available",
+          photo:'https://www.dl.dropboxusercontent.com/s/hl6xbqcykfsdns8/Rectangle%2026.png?dl=0'
         }
       ]
   },

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,6 +10,10 @@ import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { Button} from '@material-ui/core';
+import logo from '../../Image/Logo.png'
+import { Link } from 'react-router-dom';
+import { LocationContext } from '../../App';
+
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -79,7 +83,7 @@ const Header = () => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+    const [loggedInUser] = useContext(LocationContext)
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -143,8 +147,10 @@ const Header = () => {
             <AppBar position="static">
                 <Toolbar>
 
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        Material-UI
+                    <Typography className={classes.title} >
+                       <img src={logo} alt=""
+                       width='130px'
+                       />
                     </Typography>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
@@ -173,9 +179,14 @@ const Header = () => {
                         <IconButton color="inherit">
                             <Button color="inherit">Contact</Button>
                         </IconButton>
-                        <IconButton color="inherit">
-                            <Button color="inherit">Login</Button>
+                        { loggedInUser.email? 
+                            <Button color="white" >{loggedInUser.displayName}</Button>
+                        
+                           :<Link to='/signin' >
+                        <IconButton color="white">
+                            <Button color="white" >Login</Button>
                         </IconButton>
+                        </Link>}
                     </div>
                     <div className={classes.sectionMobile}>
                         <IconButton

@@ -1,36 +1,44 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Booking.css'
 import { Link } from 'react-router-dom';
 import { LocationContext } from '../../App';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Col, Row } from 'react-bootstrap';
 
-
-
-const Booking = (props) => {
-console.log(props);
+const Booking = () => {
+// console.log(props);
     const [location, setLocation] = useContext(LocationContext);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
-    const { detail, category } = location.locInfo;
-    console.log(location);
+    const {detail, category} = location.locInfo;
+    
+    const handleSubmit =()=>{
+        console.log('Form Submited');
+    }
+    const handleBlur =(e)=>{
+        console.log(e.target.value);
+    }
     return (
         <div className='booking'>
-            <div className='booking-detail'>
-                <h3>Booking For: <span style={{color:'tomato'}}> {category}</span> </h3>
+            <Row>
+            <Col md={4} className='booking-detail'>
+                <h1><span>{category}</span> </h1>
                 <p><strong style={{color:'tomato'}}>Description: </strong>{detail}</p>
-            </div>
-            <form action="" className='booking-form'>
+            </Col>
+            <Col md={6}>
+            <form action="" className='booking-form' onSubmit={handleSubmit}>
                 <label htmlFor="origin">Origin</label>
                 <br />
-                <input type="text" name='origin' placeholder='Your origin' />
+                <input type="text" onBlur={handleBlur} name='origin' placeholder='Your origin' />
                 <br />
                 <label htmlFor="destination">Destination</label>
                 <br />
-                <input type="text" name='destination' placeholder='Your destination' />
+                <input type="text" onBlur={handleBlur} name='destination' placeholder='Your destination' />
                 <br />
                 <div className='date-picker'>
-                   <div className='dataPicker1'>
+                    <Row>
+                   <Col className='dataPicker1'>
                    <p>From</p>
                     <DatePicker
 
@@ -40,8 +48,8 @@ console.log(props);
                         endDate={endDate}
                         onChange={date => setStartDate(date)}
                     />
-                   </div>
-                   <div className='dataPicker2'>
+                   </Col>
+                   <Col className='dataPicker2'>
                    <p>To</p>
                     <DatePicker
                         selected={endDate}
@@ -51,14 +59,16 @@ console.log(props);
                         minDate={startDate}
                         onChange={date => setEndDate(date)}
                     />
-                   </div>
+                   </Col>
+                   </Row>
                 </div>
                 <br />
                 <Link to='/finalBooking'>
                     <input style={{backgroundColor: '#F9A51A'}} type="submit" value="Booking" />
                 </Link>
             </form>
-
+            </Col>
+            </Row>
         </div>
     );
 };

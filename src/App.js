@@ -18,10 +18,12 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import FinalBooking from './components/FinalBooking/FinalBooking';
 
 firebase.initializeApp(firebaseConfig);
+
 export const LocationContext = createContext();
 
 function App() {
  const [singleLocation, setSingleLocation] = useState("Cox'sBazar")
+ 
  const [loggedInUser, setLoggedInUser] = useState([]) 
  
   return (
@@ -44,9 +46,9 @@ function App() {
         <Route path="/signin">
           <SignIn></SignIn>
         </Route>
-        <PrivateRoute path='/finalBooking'>
+        <Route path='/finalBooking'>
           <FinalBooking></FinalBooking>
-        </PrivateRoute>
+        </Route>
         <Route path="*">
           <NoMatch />
         </Route>

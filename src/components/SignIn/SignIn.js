@@ -4,12 +4,12 @@ import './SignIn.css';
 import firebase from "firebase/app";
 import { useHistory, useLocation } from 'react-router-dom';
 import { LocationContext } from '../../App';
+import Booking from '../Booking/Booking';
 
 
 
 
-const SignIn = (props) => {
-    console.log(props);
+const SignIn = () => {
     const [newUser, setNewUser] = useState(false)
     const [user, setUser] = useState({
         isSignedIn: false,
@@ -137,8 +137,10 @@ const SignIn = (props) => {
             setUser(newUserInfo)
         }
     }
+
+    
     return (
-        <div className='App'>
+        <div className='App' style={{backgroundColor:"white", height:"593px"}}>
         { user.isSignedIn ?
             <button onClick={handleSignOUt}>Sign Out</button> :
             <button onClick={handleSignIn}>Sign In</button>
@@ -167,6 +169,7 @@ const SignIn = (props) => {
         {
             user.success && <p style={{ color: 'green' }}>Successfully {newUser ? 'create' : 'logged in'} acount </p>
         }
+        
     </div>
   );
 }

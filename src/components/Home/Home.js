@@ -5,7 +5,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import img1 from '../../Image/Rectangle 28.png'; 
 import img2 from '../../Image/sundorbon.png';
 import img3 from '../../Image/Sreemongol.png';
-import { Button } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import { LocationContext } from '../../App';
 import Location from '../Location/Location';
 
@@ -14,10 +14,12 @@ const Home = () => {
     
     return (
        <div className='div-devide'>
-           <div className='loc-detail'>
+           <Row>
+           <Col md={4} className='loc-detail'>
                <h3>Your Location: <span style={{color:'tomato'}}>{location}</span> </h3>
                 <Location></Location>
-           </div>
+           </Col>
+           <Col md={4}>
            <Carousel className='carousel'>
             <Carousel.Item>
                 <img
@@ -33,7 +35,7 @@ const Home = () => {
                 <img
                     className="d-block w-100 img-size"
                     src={img2}
-                    alt="Third slide"
+                    alt="second slide"
                 />
 
                 <Carousel.Caption>
@@ -52,6 +54,8 @@ const Home = () => {
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
+        </Col>
+        </Row>
        </div>
     );
 };
